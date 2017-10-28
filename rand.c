@@ -25,7 +25,7 @@ int main(){
     i+=1;
   }
 
-  int numbers= open("numeros", O_CREAT | O_RDWR,0644);
+  int numbers= open("numeros", O_CREAT | O_WRONLY,0644);
   write(numbers,nums,sizeof(nums));
   close(numbers);
 
@@ -36,9 +36,9 @@ int main(){
   read(numbers,newArr,sizeof(newArr));
 
   i=0;
-  printf("printing new array....\n");
+  printf("printing new array with error check....\n");
   while(i<10){
-    printf("index %d:%d\n",i,newArr[i]);
+    printf("index %d:%d, error: %d\n",i,newArr[i], newArr[i] - nums[i]);
     i+=1;
   }
   return 0;
